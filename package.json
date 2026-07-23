@@ -1,16 +1,27 @@
 {
   "name": "intro-express-js-derly-maday",
   "version": "1.0.0",
-  "description": "",
+  "description": "introduccion express",
+  "keywords": [],
+  "homepage": "https://github.com/derlyespinosa06-web/Introducion-nodejs-Derly-Espinosa#readme",
+  "bugs": {
+    "url": "https://github.com/derlyespinosa06-web/Introducion-nodejs-Derly-Espinosa/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/derlyespinosa06-web/Introducion-nodejs-Derly-Espinosa.git"
+  },
+  "license": "ISC",
+  "author": "Derly Maday",
+  "type": "module",
   "main": "app.js",
   "scripts": {
+    "dev": "node --watch app.js",
+    "produccion": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
   "dependencies": {
+    "dotenv": "^17.4.2",
     "express": "^5.2.1"
   }
 }
