@@ -1,18 +1,17 @@
 import express from 'express';
-import {configDotenv} from "dotenv";
-import cors from "cors";
+import dotenv from 'dotenv';
+import cors from 'cors'
 
 // Const bodyParser = require(`body-Parser`);//importacion commonjs
-import bodyParser from "body-parser"; //Importacion ES "module"
-configDotenv()
+import bodyParser from "body-Parser";//Importacion ES "module"
+dotenv.config();
 
-const app = express();  
-const port = process.env.PORT || 3000; // Cambiado a 3030 por tu requerimiento previo ya que antes estada en 3000
+const app = express();
+const port = process.env.PORT || 3030; // Cambiado a 3030 por tu requerimiento previo
 
 // Middlewares para procesar datos JSON y formularios
 app.use(cors());
-app.use(bodyParser.json());
-app.use(express.json());
+app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
 export const Saludo = "Hola, estamos aprendiendo express con la ficha 3407184";
@@ -33,52 +32,41 @@ app.get("/productos", (req, res) => {
     `);
 });
 
-app.get("/productos/:nombre/:id/:precio", (req, res) => {
+app.get("/productos/:nombre/:id/:precio", (req, res)=>{
+    const producto = req.params.nombre
+    const id_producto = req.params.id
+    const precio_producto = req.params.precio
+    res.send ( `<h1> Informacion del producto </h1>
+        <ol>
+        <li> Producto: ${producto}</li>
+        <li> Id: ${id_producto} </li>
+        <li> Precio: ${precio_producto} </li>
+        </ol> ` )
+})
 
-    const nombre = req.params.nombre;
-    const id = req.params.id;
-    const precio = req.params.precio;
-
-    res.send(`
-    <h1>Información del Producto</h1>
-
-    <ol>
-        <li>Producto: ${nombre}</li>
-        <li>ID: ${id}</li>
-        <li>Precio: ${precio}</li>
-    </ol>
-
-    `);
-
+app.get("/Saludo/:name", (req, res)=>{
+    const name = req.params.name
+   res.send(`Hola ${name} Bienvenido`)
 });
 
-app.get("/saludo/:nombre", (req, res) => {
-
-    res.send(`Hola ${req.params.nombre}, Bienvenido`);
-
+app.get("/categoria/:categoria/:id", (req, res)=>{
+    const categoria_producto = req.params.categoria
+    const id_categoria = req.params.id
+    res.send(`<h1> Categoria del Producto </h1>
+        <ol>
+        <li> categortia: ${categoria_producto} </li>
+        <li> Id: ${id_categoria} </li>
+        </ol>`)
 });
 
-app.get("/categoria/:categoria/:id", (req, res) => {
-
-    res.send(`
-    <h1>Categoría</h1>
-
-    <ol>
-        <li>Categoría: ${req.params.categoria}</li>
-        <li>ID: ${req.params.id}</li>
-    </ol>
-
-    `);
-
+app.get("/articulo", (req, res) =>{
+    res.json({"nombre": "Samuel", "Apellido" : "Bernal"})
 });
 
-app.get("/", (_, res) => { 
-res.send("Hola , estamos aprendiendo express con la ficha 3407184"); 
-});  
-app.listen(port, () => { 
-console.log( `Servidor en funcionamiento en el puerto ${port}  `); 
-});
 
+app.listen(port, () => {
+    console.log(`Servidor en funcionamiento en el puerto: ${port}`);
+});
 /*
 http://localhost:3030
 */
