@@ -52,6 +52,26 @@ app.get("/productos/:nombre/:id/:precio", (req, res) => {
 
 });
 
+app.get("/saludo/:nombre", (req, res) => {
+
+    res.send(`Hola ${req.params.nombre}, Bienvenido`);
+
+});
+
+app.get("/categoria/:categoria/:id", (req, res) => {
+
+    res.send(`
+    <h1>Categoría</h1>
+
+    <ol>
+        <li>Categoría: ${req.params.categoria}</li>
+        <li>ID: ${req.params.id}</li>
+    </ol>
+
+    `);
+
+});
+
 app.get("/", (_, res) => { 
 res.send("Hola , estamos aprendiendo express con la ficha 3407184"); 
 });  
