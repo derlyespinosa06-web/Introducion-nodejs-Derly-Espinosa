@@ -33,9 +33,32 @@ app.get("/productos", (req, res) => {
     `);
 });
 
+app.get("/productos/:nombre/:id/:precio", (req, res) => {
+
+    const nombre = req.params.nombre;
+    const id = req.params.id;
+    const precio = req.params.precio;
+
+    res.send(`
+    <h1>Información del Producto</h1>
+
+    <ol>
+        <li>Producto: ${nombre}</li>
+        <li>ID: ${id}</li>
+        <li>Precio: ${precio}</li>
+    </ol>
+
+    `);
+
+});
+
 app.get("/", (_, res) => { 
 res.send("Hola , estamos aprendiendo express con la ficha 3407184"); 
 });  
 app.listen(port, () => { 
 console.log( `Servidor en funcionamiento en el puerto ${port}  `); 
 });
+
+/*
+http://localhost:3030
+*/
